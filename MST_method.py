@@ -3,6 +3,8 @@ from scipy.spatial import distance_matrix
 from scipy.sparse.csgraph import minimum_spanning_tree, connected_components
 import matplotlib.pyplot as plt
 
+from Utils import show_reference_signal_left
+
 def MST_method(s_x, s_y, s_p_x, s_p_y, s_n_x, s_n_y):
     # Combine x and y coord
     points = np.column_stack((s_x, s_y))
@@ -28,15 +30,8 @@ def MST_method(s_x, s_y, s_p_x, s_p_y, s_n_x, s_n_y):
     n_clusters, labels = connected_components(csgraph=filtered_mst, directed=False)
 
     # Showing
-    plt.figure()
-    plt.subplot(1, 2, 1)
-    plt.scatter(s_p_x, s_p_y, color='red')
-    plt.scatter(s_n_x, s_n_y, color='black')
-    plt.xlim(0, 1)
-    plt.ylim(0, 1)
-    plt.gca().set_aspect('equal', adjustable='box')
-    plt.grid(1)
-    plt.title('Signal')
+    fig = plt.figure(figsize=(10, 6))
+    show_reference_signal_left(s_p_x, s_p_y, s_n_x, s_n_y)
 
     plt.subplot(1, 2, 2)
     for cluster_id in range(n_clusters):
@@ -50,4 +45,6 @@ def MST_method(s_x, s_y, s_p_x, s_p_y, s_n_x, s_n_y):
     plt.ylim(0, 1)
     plt.gca().set_aspect('equal', adjustable='box')
     plt.grid(1)
+    fig.suptitle('MST method')
     plt.show()
+

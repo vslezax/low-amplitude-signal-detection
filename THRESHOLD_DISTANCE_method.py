@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from Utils import show_reference_signal_left
+
+
 def calculate_distance(i, s_x, s_y):
     x = s_x[i]
     y = s_y[i]
@@ -51,15 +54,8 @@ def threshold_distance_method(s_x, s_y, s_p_x, s_p_y, s_n_x, s_n_y):
             filtered_s_x.append(s_x[i])
             filtered_s_y.append(s_y[i])
 
-    plt.figure()
-    plt.subplot(1, 2, 1)
-    plt.scatter(s_p_x, s_p_y, color='red')
-    plt.scatter(s_n_x, s_n_y, color='black')
-    plt.xlim(0, 1)
-    plt.ylim(0, 1)
-    plt.gca().set_aspect('equal', adjustable='box')
-    plt.grid(1)
-    plt.title('Signal')
+    fig = plt.figure(figsize=(10, 6))
+    show_reference_signal_left(s_p_x, s_p_y, s_n_x, s_n_y)
 
     plt.subplot(1, 2, 2)
     plt.scatter(filtered_s_x, filtered_s_y, facecolors='none', edgecolors='blue', s=200, marker='s')
@@ -69,6 +65,7 @@ def threshold_distance_method(s_x, s_y, s_p_x, s_p_y, s_n_x, s_n_y):
     plt.ylim(0, 1)
     plt.gca().set_aspect('equal', adjustable='box')
     plt.grid(1)
-    plt.title('Filtered signal')
+    plt.title('Filtered points')
+    fig.suptitle('THRESHOLD DISTANCE method (MY)')
 
     plt.show()
