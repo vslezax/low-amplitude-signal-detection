@@ -30,7 +30,7 @@ def show_signal(signal_points_x, signal_points_y, noise_points_x, noise_points_y
 
     plt.xlim(0, 1)
     plt.ylim(0, 1)
-    plt.axis('square')
+    plt.gca().set_aspect('equal', adjustable='box')
     plt.show()
 
 def show_combined_signal(s_x, s_y):
@@ -40,5 +40,5 @@ def show_combined_signal(s_x, s_y):
 
     plt.xlim(0, 1)
     plt.ylim(0, 1)
-    plt.axis('square')
+    plt.gca().set_aspect('equal', adjustable='box')
     plt.show()
