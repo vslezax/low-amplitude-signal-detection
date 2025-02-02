@@ -47,4 +47,3 @@ def MST_method(s_x, s_y, s_p_x, s_p_y, s_n_x, s_n_y):
     plt.grid(1)
     fig.suptitle('MST method')
     plt.show()
-
